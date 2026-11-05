@@ -1,10 +1,3 @@
 import TabBar from "@/components/TabBar";
-export default function Page() {
-  return (
-    <main className="screen">
-      <h1>Moments</h1>
-      <p>Photo frames are coming soon.</p>
-      <TabBar active="/moments" />
-    </main>
-  );
-}
+import Moments from "@/components/Moments";
+export default function Page() { return (<main className="screen"><h1>Moments</h1><Moments /><TabBar active="/moments" /></main>); }

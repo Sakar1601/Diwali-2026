@@ -1,5 +1,6 @@
 import { createHash } from "node:crypto";
 import { admin } from "@/lib/supabase-server";
+import { requireDevice } from "@/lib/device-auth";
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const HEX64 = /^[0-9a-f]{64}$/i;
@@ -26,5 +27,16 @@ export async function POST(req: Request) {
   } else {
     return Response.json({ ok: false }, { status: 403 });
   }
+  return Response.json({ ok: true });
+}
+
+export async function DELETE(req: Request) {
+  const id = await requireDevice(req);
+  if (!id) return Response.json({ ok: false }, { status: 401 });
+  const db = admin();
+  await db.from("lamp_lights").delete().eq("device_id", id);
+  await db.from("shares").delete().eq("device_id", id);
+  await db.from("app_events").delete().eq("device_id", id);
+  await db.from("devices").delete().eq("id", id);
   return Response.json({ ok: true });
 }

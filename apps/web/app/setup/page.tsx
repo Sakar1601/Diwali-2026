@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { applySettings, ensureDevice, getSettings, markOnboarded, saveSettings } from "@/lib/device";
+import { applySettings, enablePush, ensureDevice, getSettings, markOnboarded, saveSettings } from "@/lib/device";
 
 function Toggle({ label, hint, on, onChange }: { label: string; hint: string; on: boolean; onChange: (v: boolean) => void }) {
   return (
@@ -19,10 +19,10 @@ export default function Setup() {
   async function finish(save: boolean) {
     if (save) {
       saveSettings({ reminders, wayfinding });
-      if (reminders && "Notification" in window) { try { await Notification.requestPermission(); } catch { /* optional */ } }
     }
     markOnboarded();
     await ensureDevice();
+    if (save && reminders) await enablePush();
     window.location.assign("/today");
   }
   return (

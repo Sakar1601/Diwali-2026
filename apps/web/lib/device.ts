@@ -41,3 +41,27 @@ export async function ensureDevice(): Promise<void> {
     await fetch("/api/device", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ id, secret }) });
   } catch { /* offline: retried next open */ }
 }
+
+export function deviceHeaders(): Record<string, string> {
+  return { "x-device-id": get(K.id) || "", "x-device-secret": get(K.secret) || "", "content-type": "application/json" };
+}
+export async function removeMyData() {
+  try { await fetch("/api/device", { method: "DELETE", headers: deviceHeaders() }); } catch { /* offline */ }
+  try { localStorage.clear(); } catch { /* ignore */ }
+  try { (await navigator.serviceWorker?.getRegistrations())?.forEach((r) => r.unregister()); } catch { /* ignore */ }
+}
+export async function enablePush(): Promise<boolean> {
+  try {
+    if (!("serviceWorker" in navigator) || !("PushManager" in window)) return false;
+    const perm = await Notification.requestPermission(); if (perm !== "granted") return false;
+    const reg = await navigator.serviceWorker.register("/sw.js");
+    await navigator.serviceWorker.ready;
+    const key = process.env.NEXT_PUBLIC_VAPID_PUBLIC_KEY!;
+    const pad = "=".repeat((4 - (key.length % 4)) % 4);
+    const raw = atob((key + pad).replace(/-/g, "+").replace(/_/g, "/"));
+    const sub = await reg.pushManager.subscribe({ userVisibleOnly: true, applicationServerKey: Uint8Array.from(raw, (c) => c.charCodeAt(0)) });
+    const r = await fetch("/api/push/subscribe", { method: "POST", headers: deviceHeaders(), body: JSON.stringify({ subscription: sub.toJSON() }) });
+    return r.ok;
+  } catch { return false; }
+}
+export function track(name: string) { fetch("/api/event", { method: "POST", headers: deviceHeaders(), body: JSON.stringify({ name }) }).catch(() => {}); }
