@@ -1,7 +1,9 @@
 import { createHash, timingSafeEqual } from "node:crypto";
 import { admin } from "@/lib/supabase-server";
+import { ipOf, limited, tooMany } from "@/lib/device-auth";
 
 export async function GET(req: Request, ctx: { params: Promise<{ id: string }> }) {
+  if (limited(`tv:${ipOf(req)}`, 120)) return tooMany();
   const { id } = await ctx.params, t = new URL(req.url).searchParams.get("t") ?? "";
   const db = admin();
   const { data: sc } = await db.from("screens").select("id,name,orientation,token_hash").eq("id", id).maybeSingle();

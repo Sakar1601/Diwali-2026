@@ -191,3 +191,33 @@ select.inp{background:#fff}
   body:has(.dock) .strip{margin-left:var(--gx);margin-right:var(--gx)}
   body:has(.dock) .screen.narrow .pg{max-width:none;padding-left:max(40px,calc((100vw - 264px - 720px)/2));padding-right:max(40px,calc((100vw - 264px - 720px)/2))}
 }
+
+/* Staff + admin */
+.sbar{display:flex;align-items:center;gap:12px}
+.sbar .grow b{font-size:18px;color:#4353A2}
+.sout{border:1.5px solid var(--line);background:#fff;border-radius:12px;min-height:40px;padding:0 14px;font:inherit;font-weight:700;font-size:14px;color:#4353A2;cursor:pointer}
+.inp.big{min-height:60px;font-size:18px}
+.av{flex:none;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:rgba(67,83,162,.12);color:#4353A2;font-weight:800;font-size:15px}
+.chip{display:inline-flex;align-items:center;border-radius:999px;padding:5px 11px;font-size:13px;font-weight:700;white-space:nowrap}
+.chip.ok{background:#E3F4E8;color:#166534}.chip.warn{background:#FFF1D0;color:#8A5A00}
+.btn.mini{width:auto;min-height:44px;padding:0 16px;font-size:15px}
+.pcard{display:grid;gap:14px;padding:20px}
+.li.pr{flex-wrap:wrap}
+.adm{display:flex;flex-direction:column;gap:20px}
+.atabs{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
+.atab{flex:none;min-height:44px;padding:0 16px;border-radius:999px;border:1.5px solid var(--line);background:#fff;color:var(--tx);font:inherit;font-weight:700;font-size:15px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center}
+.atab[aria-selected=true]{background:#4353A2;border-color:#4353A2;color:#fff}
+.admmain{display:flex;flex-direction:column;gap:14px;min-width:0}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.stat{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px;display:grid;gap:6px;border-top:3px solid var(--c,#4353A2)}
+.stat span{font-size:13px;font-weight:600;color:var(--mu)}.stat b{font-size:32px;line-height:1;color:var(--tx);font-variant-numeric:tabular-nums}
+@media (min-width:1024px){
+  .adm{flex-direction:row;align-items:flex-start;gap:32px}
+  .atabs{flex-direction:column;width:210px;flex:none;position:sticky;top:24px;overflow:visible}
+  .atab{border-radius:14px;justify-content:flex-start;min-height:48px}
+  .admmain{flex:1}
+  .screen.admin{max-width:1240px!important}
+}
+.drop{display:grid;gap:4px;justify-items:center;text-align:center;padding:28px 16px;border:2px dashed rgba(67,83,162,.35);border-radius:20px;background:#fff;cursor:pointer}
+.drop:hover{border-color:#4353A2;background:rgba(67,83,162,.04)}
+.drop b{color:#4353A2;font-size:17px}

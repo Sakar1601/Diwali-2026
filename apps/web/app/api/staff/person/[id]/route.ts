@@ -2,11 +2,15 @@ import { admin } from "@/lib/supabase-server";
 import { dec } from "@/lib/crypto";
 import { audit, requireStaff, today } from "@/lib/staff-auth";
 import { maskEmail, maskPhone } from "@/lib/people";
+import { limited, tooMany } from "@/lib/device-auth";
+const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
 export async function GET(req: Request, ctx: { params: Promise<{ id: string }> }) {
   const staff = await requireStaff(req);
   if (!staff) return Response.json({ error: "unauthorized" }, { status: 401 });
+  if (limited(`sp:${staff.id}`, 120)) return tooMany();
   const { id } = await ctx.params;
+  if (!UUID.test(id)) return Response.json({ error: "not_found" }, { status: 404 });
   const db = admin(), day = today(), full = staff.role === "admin";
   const { data: me } = await db.from("people").select("household_id").eq("id", id).maybeSingle();
   if (!me) return Response.json({ error: "not_found" }, { status: 404 });

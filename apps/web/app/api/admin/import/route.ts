@@ -1,13 +1,14 @@
 import { admin } from "@/lib/supabase-server";
-import { audit, requireStaff } from "@/lib/staff-auth";
+import { audit } from "@/lib/staff-auth";
+import { requireAdmin } from "@/lib/admin-auth";
 import { plan, run } from "@/lib/import";
 import { bust } from "@/lib/people";
 
 export const maxDuration = 60;
 
 export async function POST(req: Request) {
-  const staff = await requireStaff(req);
-  if (!staff || staff.role !== "admin") return Response.json({ error: "unauthorized" }, { status: 401 });
+  const staff = await requireAdmin(req);
+  if (!staff) return Response.json({ error: "unauthorized" }, { status: 401 });
   const b = await req.json().catch(() => null) as { csv?: string; name?: string; commit?: boolean } | null;
   if (!b?.csv || b.csv.length > 4_000_000) return Response.json({ error: "bad_request" }, { status: 400 });
   const p = plan(b.csv);

@@ -5,7 +5,8 @@ import { dec } from "@/lib/crypto";
 export const maxDuration = 60;
 
 export async function POST(req: Request) {
-  if (req.headers.get("authorization") !== `Bearer ${process.env.CRON_SECRET}`) return Response.json({ error: "unauthorized" }, { status: 401 });
+  const secret = process.env.CRON_SECRET;
+  if (!secret || secret.length < 16 || req.headers.get("authorization") !== `Bearer ${secret}`) return Response.json({ error: "unauthorized" }, { status: 401 });
   const db = admin();
   const { data: k } = await db.from("settings").select("value").eq("key", "kill_push_sending").maybeSingle();
   if (k?.value === true) return Response.json({ ok: true, paused: true });

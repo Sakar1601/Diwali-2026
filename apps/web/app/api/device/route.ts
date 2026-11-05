@@ -1,11 +1,12 @@
 import { createHash } from "node:crypto";
 import { admin } from "@/lib/supabase-server";
-import { requireDevice } from "@/lib/device-auth";
+import { ipOf, limited, requireDevice, tooMany } from "@/lib/device-auth";
 
 const UUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-8][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const HEX64 = /^[0-9a-f]{64}$/i;
 
 export async function POST(req: Request) {
+  if (limited(`reg:${ipOf(req)}`, 20)) return tooMany();
   let body: { id?: unknown; secret?: unknown };
   try { body = await req.json(); } catch { return Response.json({ ok: false }, { status: 400 }); }
   const { id, secret } = body;

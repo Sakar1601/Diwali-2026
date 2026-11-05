@@ -3,12 +3,14 @@ import { admin } from "@/lib/supabase-server";
 import { addressKey, enc } from "@/lib/crypto";
 import { audit, flag, requireStaff } from "@/lib/staff-auth";
 import { bust } from "@/lib/people";
+import { limited, tooMany } from "@/lib/device-auth";
 
 const clean = (v: unknown, n = 80) => (typeof v === "string" ? v.trim().slice(0, n) : "");
 
 export async function POST(req: Request) {
   const staff = await requireStaff(req);
   if (!staff) return Response.json({ error: "unauthorized" }, { status: 401 });
+  if (limited(`sw:${staff.id}`, 30)) return tooMany();
   if (await flag("kill_staff_search")) return Response.json({ error: "paused" }, { status: 503 });
   const b = await req.json().catch(() => ({})) as Record<string, unknown>;
   const first = clean(b.first), last = clean(b.last), street = clean(b.street, 120), zip = clean(b.zip, 10);

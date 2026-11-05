@@ -1,5 +1,6 @@
 "use client";
 import Link from "next/link";
+import InstallBanner from "@/components/InstallBanner";
 import { useEffect, useState } from "react";
 import { applySettings, ensureDevice, track } from "@/lib/device";
 import { Icon } from "./ui";
@@ -34,6 +35,7 @@ export default function TodayView({ items, photo, whatsapp, instagram }: { items
         <div className="ser" style={{ fontSize: 28, fontWeight: 600, lineHeight: 1.15 }}>शुभ दीपावली</div>
         <div className="mu" style={{ marginTop: 4 }}>Saturday, Nov 14 · Welcome to the mandir</div>
       </div>
+      <InstallBanner />
       <div className="cols2"><div className="sec">
       {current && (
         <div className="now inv">

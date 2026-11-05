@@ -10,6 +10,8 @@ export async function requireDevice(req: Request): Promise<string | null> {
   const a = Buffer.from(data.secret_hash), b = Buffer.from(createHash("sha256").update(secret).digest("hex"));
   return a.length === b.length && timingSafeEqual(a, b) ? id : null;
 }
+export const ipOf = (req: Request) => req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
+export const tooMany = () => Response.json({ error: "slow_down" }, { status: 429, headers: { "retry-after": "30" } });
 // Tiny per-instance limiter: slows abuse without a store. Real limits sit in the Vercel firewall.
 const hits = new Map<string, number[]>();
 export function limited(key: string, max: number, windowMs = 60_000) {
