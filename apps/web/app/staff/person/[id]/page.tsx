@@ -28,7 +28,7 @@ export default function PersonPage({ params }: { params: Promise<{ id: string }>
   const got = v.calendar.find((c) => !c.extra);
   return (
     <main className="screen">
-      <Link href="/staff/search">‹ Back to search</Link>
+      <Link className="back" href="/staff/search">‹ Back to search</Link>
       <p>{v.address}</p>
       <section className="card">
         <h2>Calendar (one per household)</h2>

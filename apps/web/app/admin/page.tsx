@@ -21,7 +21,7 @@ function Dashboard() {
   const T = ({ k, v }: { k: string; v: number }) => <div className="card"><p>{k}</p><h1>{v.toLocaleString()}</h1></div>;
   return (<>
     <p>Counts for {s.day}. No names are shown here.</p>
-    <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
+    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit,minmax(170px,1fr))", gap: 12 }}>
       <T k="Calendars given" v={s.calendar} /><T k="Extra Calendars" v={s.calendarExtra} /><T k="Prasad given" v={s.prasad} /><T k="People on file" v={s.people} />
       <T k="Walk-ups added" v={s.walkups} /><T k="Phones opened app" v={s.devices} /><T k="Reminders on" v={s.pushSubs} /><T k="Lamps lit" v={s.lamps} />
       <T k="Followed WhatsApp" v={s.events.followed_whatsapp} /><T k="Followed Instagram" v={s.events.followed_instagram} /><T k="Opened photo link" v={s.events.opened_photo_link} /><T k="Moments made" v={s.events.made_moment} />
@@ -112,11 +112,11 @@ function Audit() {
 export default function AdminHome() {
   const [tab, setTab] = useState<Tab>("Dashboard");
   return (
-    <main className="screen" style={{ maxWidth: 720 }}>
+    <main className="screen" style={{ maxWidth: 960 }}>
       <span className="step">Admin</span><h1>Light Beyond Lamps</h1>
       <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }} role="tablist">
         {TABS.map((t) => <button key={t} role="tab" aria-selected={tab === t} onClick={() => setTab(t)} style={{ minHeight: 44, padding: "0 14px", borderRadius: 22, border: "1px solid var(--line)", background: tab === t ? "var(--nv)" : "#fff", color: tab === t ? "#fff" : "var(--tx)", font: "inherit" }}>{t}</button>)}
-        <Link href="/admin/import" style={{ alignSelf: "center" }}>Import people</Link>
+        <Link href="/admin/import" className="back">Import people</Link>
       </div>
       {tab === "Dashboard" && <Dashboard />}{tab === "Notify" && <Notify />}{tab === "Screens" && <Screens />}{tab === "Staff" && <Staff />}{tab === "Settings" && <Settings />}{tab === "Audit" && <Audit />}
     </main>

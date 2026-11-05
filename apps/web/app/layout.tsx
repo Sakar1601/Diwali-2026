@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   manifest: "/manifest.webmanifest",
   appleWebApp: { capable: true, title: "Diwali 2026", statusBarStyle: "default" },
 };
-export const viewport: Viewport = { themeColor: "#4353A2", width: "device-width", initialScale: 1 };
+export const viewport: Viewport = { themeColor: "#4353A2", width: "device-width", initialScale: 1, viewportFit: "cover" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

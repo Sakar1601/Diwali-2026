@@ -9,7 +9,7 @@ export default async function Booth({ params }: { params: Promise<{ slug: string
   const b = BOOTHS.find((x) => x.slug === slug); if (!b) notFound();
   return (
     <main className="screen">
-      <Link href="/booths">‹ All booths</Link>
+      <Link className="back" href="/booths">‹ All booths</Link>
       <span className="step">{b.sub}</span><h1>{b.name}</h1>
       <p style={{ color: "var(--tx)" }}>{b.blurb}</p>
       <LightLamp slug={b.slug} />

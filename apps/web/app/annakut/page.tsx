@@ -12,7 +12,7 @@ const CARDS = [
 export default function Annakut() {
   return (
     <main className="screen">
-      <Link href="/today">‹ Today</Link>
+      <Link className="back" href="/today">‹ Today</Link>
       <h1>What is Annakut?</h1>
       <p>A 2-minute guide to today.</p>
       {CARDS.map(([t, d], i) => (<section className="card" key={t}><span className="step">{i + 1} of {CARDS.length}</span><h2>{t}</h2><p style={{ color: "var(--tx)" }}>{d}</p></section>))}

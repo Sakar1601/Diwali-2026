@@ -19,8 +19,8 @@ export default function RouteFinder({ locations, edges }: { locations: L[]; edge
   const sel = { minHeight: 52, borderRadius: 12, border: "1px solid var(--line)", padding: "0 12px", font: "inherit", width: "100%", background: "#fff" } as const;
   return (
     <>
-      <label>Where are you?<select style={sel} value={from} onChange={(e) => setFrom(e.target.value)}><option value="">Choose</option>{locations.map((l) => <option key={l.id} value={l.id}>{l.name}</option>)}</select></label>
-      <label>Where to?<select style={sel} value={to} onChange={(e) => setTo(e.target.value)}><option value="">Choose</option>{locations.map((l) => <option key={l.id} value={l.id}>{l.name}</option>)}</select></label>
+      <label style={{ display: "grid", gap: 6 }}>Where are you?<select style={sel} value={from} onChange={(e) => setFrom(e.target.value)}><option value="">Choose</option>{locations.map((l) => <option key={l.id} value={l.id}>{l.name}</option>)}</select></label>
+      <label style={{ display: "grid", gap: 6 }}>Where to?<select style={sel} value={to} onChange={(e) => setTo(e.target.value)}><option value="">Choose</option>{locations.map((l) => <option key={l.id} value={l.id}>{l.name}</option>)}</select></label>
       {path && path.length === 0 && <p>Walking directions for this trip are not ready yet. Please ask a volunteer.</p>}
       {path && path.length > 0 && (
         <section className="card"><h2>About {path.reduce((a, e) => a + e.minutes, 0)} min</h2>

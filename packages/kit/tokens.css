@@ -19,3 +19,9 @@ p{margin:0;color:var(--mu)}
 .row{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:48px}
 .step{font-size:.8rem;letter-spacing:.06em;text-transform:uppercase;color:var(--sf);font-weight:600}
 :focus-visible{outline:3px solid var(--am);outline-offset:2px}
+.back{display:inline-flex;align-items:center;min-height:48px;color:var(--nv);text-decoration:none;font-weight:600}
+img,canvas,video{max-width:100%}
+@media (min-width:768px){.screen{max-width:640px;padding-top:40px;gap:20px}}
+@media (min-width:1100px){.screen{max-width:720px}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.screen>*{flex-shrink:0}
