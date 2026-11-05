@@ -172,3 +172,11 @@ select.inp{background:#fff}
 .chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
 @media (min-width:768px){.chips{flex-wrap:wrap;overflow:visible}}
 @media (min-width:1024px){.screen.wide:not(:has(.dock)){max-width:1040px;margin:40px auto;min-height:0;border-radius:28px;box-shadow:0 24px 70px rgba(67,83,162,.18),0 0 0 1px var(--line)}.screen.wide:not(:has(.dock)) .pg{min-height:0;padding-bottom:40px}}
+
+/* Today polish */
+.tm{width:78px;white-space:nowrap}
+@media (min-width:768px){
+  .cols2:has(>.cx-b){grid-template-rows:auto 1fr;row-gap:28px}
+  .cols2>.cx-b{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px 24px;box-shadow:0 6px 24px rgba(67,83,162,.07)}
+  .cx-b .srow{padding:14px 0}
+}
