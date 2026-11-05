@@ -17,7 +17,7 @@ export default function StaffSearch() {
     return () => clearTimeout(t);
   }, [q]);
   return (
-    <main className="screen pg">
+    <main className="screen narrow pg">
       <h1>Find a person</h1>
       <input autoFocus value={q} onChange={(e) => setQ(e.target.value)} placeholder="Name, last 4 of phone, or email" aria-label="Search"
         style={{ minHeight: 56, padding: "12px 14px", borderRadius: 12, border: "1.5px solid rgba(67,83,162,.3)", font: "inherit" }} />

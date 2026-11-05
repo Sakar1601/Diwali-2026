@@ -34,6 +34,7 @@ export default function TodayView({ items, photo, whatsapp, instagram }: { items
         <div className="ser" style={{ fontSize: 28, fontWeight: 600, lineHeight: 1.15 }}>शुभ दीपावली</div>
         <div className="mu" style={{ marginTop: 4 }}>Saturday, Nov 14 · Welcome to the mandir</div>
       </div>
+      <div className="cols2"><div className="sec">
       {current && (
         <div className="now inv">
           <div className="tag"><span className="live" />HAPPENING NOW</div>
@@ -48,6 +49,7 @@ export default function TodayView({ items, photo, whatsapp, instagram }: { items
       {next && (
         <div className="grp"><div className="li"><span className="ic" style={{ background: "#0E8C7F" }}><Icon n="star" /></span><div className="grow"><div className="eb">Up next</div><b>{next.title}</b></div><b style={{ fontSize: 18 }}>{fmt(next.starts_at)}</b></div></div>
       )}
+      </div>
       <div className="sec">
         <h2 className="ser" style={{ fontSize: 24, fontWeight: 600 }}>My Day</h2>
         <div>
@@ -62,7 +64,8 @@ export default function TodayView({ items, photo, whatsapp, instagram }: { items
           ))}
         </div>
       </div>
-      <div className="sec"><div className="eb">More to do</div>
+      </div>
+      <div className="cols2"><div className="sec"><div className="eb">More to do</div>
         <div className="grp">
           <More href="/booths" ic="diya" bg="#E3A72F" t="Virtual booths" s="Six small activities. Light a lamp at each." />
           <More href="/moments" ic="cam" bg="#C2557F" t="Photo frames" s="Take a selfie with a Diwali frame." />
@@ -83,6 +86,7 @@ export default function TodayView({ items, photo, whatsapp, instagram }: { items
           <div className="sm mu">Tap Follow, then come back. We mark it done.</div>
         </div>
       )}
+      </div>
     </>
   );
 }

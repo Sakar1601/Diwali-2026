@@ -24,7 +24,7 @@ export default function PersonPage({ params }: { params: Promise<{ id: string }>
   async function extra(personId: string) {
     const reason = prompt("Why give another Calendar?"); if (reason?.trim()) give("calendar", personId, reason);
   }
-  if (!v) return <main className="screen pg"><p>Loading…</p></main>;
+  if (!v) return <main className="screen narrow pg"><p>Loading…</p></main>;
   const got = v.calendar.find((c) => !c.extra);
   return (
     <main className="screen pg">

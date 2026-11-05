@@ -15,7 +15,7 @@ export default function Setup() {
     window.location.assign("/today");
   }
   return (
-    <main className="screen">
+    <main className="screen narrow">
       <div className="pg fl">
         <PageBar back="/install" tag="Step 2 of 2" />
         <div><h1 className="ttl">Set up in one step</h1><p className="lead">All optional. The app works if you skip.</p></div>

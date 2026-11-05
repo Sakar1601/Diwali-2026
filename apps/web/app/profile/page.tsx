@@ -17,7 +17,7 @@ export default function Profile() {
   );
   async function wipe() { if (confirm("Remove your settings and lamps from this phone and our records?")) { await removeMyData(); location.assign("/"); } }
   return (
-    <main className="screen">
+    <main className="screen narrow">
       <div className="pg">
         <PageBar back="/today" tag="Profile" />
         <div className="grp">

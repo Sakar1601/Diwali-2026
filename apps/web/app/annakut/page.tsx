@@ -10,7 +10,7 @@ const CARDS = [
 ];
 export default function Annakut() {
   return (
-    <main className="screen">
+    <main className="screen narrow">
       <div className="pg" style={{ gap: 12 }}>
         <PageBar back="/today" tag="About Annakut" />
         <div><h1 className="ttl">Annakut: a mountain of food</h1><p className="lead">A short guide. Takes about 2 minutes.</p></div>

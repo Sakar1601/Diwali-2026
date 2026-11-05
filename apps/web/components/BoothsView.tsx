@@ -14,9 +14,9 @@ export default function BoothsView() {
       <div style={{ display: "flex", gap: 10, justifyContent: "center" }} aria-label={`${mine.length} of ${BOOTHS.length} lamps lit`}>
         {BOOTHS.map((b) => <span key={b.slug} className={`lamp ${mine.includes(b.slug) ? "on" : "off"}`}><Icon n="diya" /></span>)}
       </div>
-      <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+      <div className="zz">
         {BOOTHS.map((b, i) => (
-          <Link key={b.slug} href={`/booths/${b.slug}`} className="card" style={{ width: "82%", marginLeft: i % 2 ? "auto" : 0, marginRight: i % 2 ? 0 : "auto", display: "flex", alignItems: "center", gap: 12, textDecoration: "none", color: "inherit" }}>
+          <Link key={b.slug} href={`/booths/${b.slug}`} className="card">
             <span className="num" style={{ width: 44, height: 44, background: b.color, fontSize: 18 }}>{i + 1}</span>
             <div className="grow"><b>{b.name}</b><small className="mu" style={{ display: "block", fontSize: 14 }}>{b.sub}</small></div>
             {mine.includes(b.slug) ? <span className="lamp on" style={{ width: 34, height: 34 }}><Icon n="diya" /></span> : <span className="chev">›</span>}

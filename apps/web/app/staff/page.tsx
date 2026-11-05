@@ -21,7 +21,7 @@ export default function StaffLogin() {
   }
   const input = { width: "100%", minHeight: 52, padding: "12px 14px", borderRadius: 12, border: "1px solid var(--line)", font: "inherit" } as const;
   return (
-    <main className="screen pg">
+    <main className="screen narrow pg">
       <span className="step">Network team</span><h1>Sign in</h1>
       <p>We email you a 6-digit code. No password.</p>
       {!sent ? (<>

@@ -5,7 +5,7 @@ export default async function Help() {
   const { data } = await admin().from("settings").select("value").eq("key", "helpdesk_phone").maybeSingle();
   const phone = typeof data?.value === "string" ? data.value : null;
   return (
-    <main className="screen">
+    <main className="screen narrow">
       <div className="pg">
         <PageBar back="/profile" tag="Help" />
         <div><h1 className="ttl">We are happy to help</h1><p className="lead">You do not need the app to enjoy today. A volunteer can do everything for you.</p></div>
