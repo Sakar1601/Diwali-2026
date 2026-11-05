@@ -23,7 +23,7 @@ p{color:var(--mu)}
 .sec{display:flex;flex-direction:column;gap:12px}
 .top{margin:-24px -20px 0;flex:none}
 .hdr{position:relative;background:linear-gradient(160deg,rgba(67,83,162,.92),rgba(76,57,123,.96)),url("/bokeh.jpg") center/cover;color:#fff;padding:54px 20px 18px;overflow:hidden}
-.hdr::before{content:"";position:absolute;left:0;right:0;top:0;height:34px;background:url("/toran.png") center top/100% 100% no-repeat}
+.hdr::before{content:"";position:absolute;left:0;right:0;top:0;height:34px;background:url("/toran-tile.png") left top/480px 34px round}
 .hb{z-index:1;width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;position:relative}
 .hb svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .strip{display:flex;align-items:center;gap:8px;margin:12px 20px 0;min-height:48px;border-radius:14px;background:#F4B31A;color:#040707;overflow:hidden;padding:0 0 0 12px}
@@ -132,3 +132,6 @@ select.inp{background:#fff}
 }
 @media (max-width:359px){.pg{padding:20px 16px 120px}.top{margin:-20px -16px 0}.hdr{padding-left:16px;padding-right:16px}.strip{margin-left:16px;margin-right:16px}h1,.ttl{font-size:25px}.lamp{width:36px;height:36px}}
 @media (max-height:520px) and (orientation:landscape){.cta{position:static;background:none}.pg.fl{padding-bottom:24px}.dock{height:64px}.dock a{padding-top:4px}}
+
+.cx-c{gap:24px}
+@media (min-width:768px){.cols2>.cx-b{grid-column:2;grid-row:1/span 2;position:sticky;top:16px}.cols2>.cx-c{grid-column:1}}

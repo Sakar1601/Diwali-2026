@@ -50,7 +50,7 @@ export default function TodayView({ items, photo, whatsapp, instagram }: { items
         <div className="grp"><div className="li"><span className="ic" style={{ background: "#0E8C7F" }}><Icon n="star" /></span><div className="grow"><div className="eb">Up next</div><b>{next.title}</b></div><b style={{ fontSize: 18 }}>{fmt(next.starts_at)}</b></div></div>
       )}
       </div>
-      <div className="sec">
+      <div className="sec cx-b">
         <h2 className="ser" style={{ fontSize: 24, fontWeight: 600 }}>My Day</h2>
         <div>
           {items.length === 0 && <p>The schedule will appear here.</p>}
@@ -64,8 +64,7 @@ export default function TodayView({ items, photo, whatsapp, instagram }: { items
           ))}
         </div>
       </div>
-      </div>
-      <div className="cols2"><div className="sec"><div className="eb">More to do</div>
+      <div className="sec cx-c"><div className="sec"><div className="eb">More to do</div>
         <div className="grp">
           <More href="/booths" ic="diya" bg="#E3A72F" t="Virtual booths" s="Six small activities. Light a lamp at each." />
           <More href="/moments" ic="cam" bg="#C2557F" t="Photo frames" s="Take a selfie with a Diwali frame." />
@@ -86,7 +85,7 @@ export default function TodayView({ items, photo, whatsapp, instagram }: { items
           <div className="sm mu">Tap Follow, then come back. We mark it done.</div>
         </div>
       )}
-      </div>
+      </div></div>
     </>
   );
 }
