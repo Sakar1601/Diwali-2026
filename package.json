@@ -9,7 +9,7 @@
     "dev": "pnpm --filter @diwali/web dev",
     "build": "pnpm --filter @diwali/web build",
     "typecheck": "pnpm -r typecheck",
-    "import-people": "tsx --conditions=react-server scripts/import.ts"
+    "import-people": "tsx --conditions=react-server scripts/import-people.mts"
   },
   "devDependencies": {
     "@supabase/supabase-js": "^2.119.0",

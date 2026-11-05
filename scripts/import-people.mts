@@ -2,7 +2,7 @@
 // Needs NEXT_PUBLIC_SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY, ENC_KEY, ADDRESS_HMAC_KEY in the environment.
 import { readFileSync } from "node:fs";
 import { createClient } from "@supabase/supabase-js";
-import { addressKey, enc } from "../apps/web/lib/crypto";
+import { addressKey, enc } from "../apps/web/lib/crypto.ts";
 
 function parseCsv(t: string): string[][] {
   const rows: string[][] = []; let row: string[] = [], f = "", q = false;
