@@ -1,0 +1,11 @@
+{
+  "name": "Light Beyond Lamps",
+  "short_name": "Diwali 2026",
+  "description": "BAPS Phoenix Diwali 2026 visitor guide",
+  "start_url": "/today",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#F6F0F5",
+  "theme_color": "#4353A2",
+  "icons": [{ "src": "/baps-logo.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" }]
+}
