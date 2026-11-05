@@ -2,10 +2,15 @@ import { admin } from "@/lib/supabase-server";
 import { limited, requireDevice } from "@/lib/device-auth";
 import { BOOTHS } from "@/lib/booths";
 
+let totalCache = { n: 0, at: 0 };
 export async function GET(req: Request) {
   const id = await requireDevice(req);
   const db = admin();
-  const { count } = await db.from("lamp_lights").select("*", { count: "exact", head: true });
+  if (Date.now() - totalCache.at > 15_000) {
+    const { count } = await db.from("lamp_lights").select("*", { count: "exact", head: true });
+    totalCache = { n: count ?? totalCache.n, at: Date.now() };
+  }
+  const count = totalCache.n;
   let mine: string[] = [];
   if (id) mine = ((await db.from("lamp_lights").select("booth").eq("device_id", id)).data ?? []).map((r) => r.booth);
   return Response.json({ mine, total: count ?? 0 });

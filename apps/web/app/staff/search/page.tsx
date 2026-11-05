@@ -13,6 +13,7 @@ export default function StaffSearch() {
     const t = setTimeout(async () => {
       setBusy(true); const r = await api(`/api/staff/search?q=${encodeURIComponent(q)}`); setBusy(false);
       if (r.status === 401) return location.replace("/staff");
+      if (r.status === 0) return setMsg("No connection. Keep typing once the signal is back.");
       if (r.status === 503) return setMsg("Search is paused by the admin.");
       if (r.status === 429) return setMsg("Slow down for a moment, then try again.");
       setRows(r.body?.results ?? []); setMsg(r.body?.results?.length ? "" : "No match. Try fewer letters or the last 4 phone digits.");

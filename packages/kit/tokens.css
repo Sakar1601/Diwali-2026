@@ -22,8 +22,8 @@ p{color:var(--mu)}
 .mu{color:var(--mu)}.sm{font-size:14px}.ctr{text-align:center}
 .sec{display:flex;flex-direction:column;gap:12px}
 .top{margin:-24px -20px 0;flex:none}
-.hdr{position:relative;background:linear-gradient(160deg,rgba(67,83,162,.92),rgba(76,57,123,.96)),url("/bokeh.jpg") center/cover;color:#fff;padding:54px 20px 18px;overflow:hidden}
-.hdr::before{content:"";position:absolute;left:0;right:0;top:0;height:34px;background:url("/toran-tile.png") left top/480px 34px round}
+.hdr{position:relative;background:linear-gradient(160deg,rgba(67,83,162,.92),rgba(76,57,123,.96)),url("/bokeh.webp") center/cover;color:#fff;padding:54px 20px 18px;overflow:hidden}
+.hdr::before{content:"";position:absolute;left:0;right:0;top:0;height:34px;background:url("/toran-tile.webp") left top/480px 34px round}
 .hb{z-index:1;width:44px;height:44px;display:flex;align-items:center;justify-content:center;color:#fff;text-decoration:none;position:relative}
 .hb svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .strip{display:flex;align-items:center;gap:8px;margin:12px 20px 0;min-height:48px;border-radius:14px;background:#F4B31A;color:#040707;overflow:hidden;padding:0 0 0 12px}
@@ -92,10 +92,10 @@ select.inp{background:#fff}
 .sw[aria-checked="true"]{background:#4353A2}
 .sw[aria-checked="true"]::after{left:23px}
 .wel{display:flex;flex-direction:column;min-height:100dvh}
-.wtop{position:relative;flex:none;padding:52px 20px 36px;background:linear-gradient(180deg,rgba(67,83,162,.55),rgba(76,57,123,.82)),url("/bokeh.jpg") center/cover;color:#fff;text-align:center;display:flex;flex-direction:column;align-items:center;gap:20px;min-height:min(56dvh,470px)}
+.wtop{position:relative;flex:none;padding:52px 20px 36px;background:linear-gradient(180deg,rgba(67,83,162,.55),rgba(76,57,123,.82)),url("/bokeh.webp") center/cover;color:#fff;text-align:center;display:flex;flex-direction:column;align-items:center;gap:20px;min-height:min(56dvh,470px)}
 .wtop .toran{position:absolute;left:0;top:0;width:100%;display:block}
 .wtop .brand{align-self:stretch;text-align:left;position:relative;z-index:1}
-.wbg{flex:1;padding:28px 20px calc(28px + env(safe-area-inset-bottom));background:linear-gradient(180deg,rgba(246,240,245,.5),rgba(246,240,245,.82) 62%),url("/diya-bg.jpg") center bottom/cover;display:flex;flex-direction:column;justify-content:space-between;gap:24px;text-align:center}
+.wbg{flex:1;padding:28px 20px calc(28px + env(safe-area-inset-bottom));background:linear-gradient(180deg,rgba(246,240,245,.5),rgba(246,240,245,.82) 62%),url("/diya-bg.webp") center bottom/cover;display:flex;flex-direction:column;justify-content:space-between;gap:24px;text-align:center}
 .tvx{background:#4353A2}
 
 :focus-visible{outline:3px solid #F4B31A;outline-offset:2px}

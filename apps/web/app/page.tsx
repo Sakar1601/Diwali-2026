@@ -11,7 +11,7 @@ export default function Welcome() {
   return (
     <main className="screen wel">
       <div className="wtop inv">
-        <img className="toran" src="/toran.png" alt="" />
+        <img className="toran" src="/toran.webp" alt="" />
         <div className="brand" style={{ marginTop: 4 }}>
           <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
             <Logo size={44} />
@@ -21,8 +21,8 @@ export default function Welcome() {
         <Link className="lang" href="/help" style={{ alignSelf: "flex-start", background: "rgba(255,255,255,.12)", position: "relative", zIndex: 1 }}>Language: English ▾</Link>
         <div className="hero" style={{ marginTop: "auto", position: "relative", zIndex: 1 }}>
           <div style={{ fontSize: 12, fontWeight: 600, letterSpacing: ".2em" }}>BAPS PHOENIX · DIWALI 2026</div>
-          <img src="/wordmark-white.png" alt="Light Beyond Lamps" style={{ width: 250, maxWidth: "80%", display: "block", margin: "12px auto 0" }} />
-          <img src="/diyas.png" alt="" style={{ width: 88, display: "block", margin: "12px auto 0" }} />
+          <img src="/wordmark-white.webp" alt="Light Beyond Lamps" style={{ width: 250, maxWidth: "80%", display: "block", margin: "12px auto 0" }} />
+          <img src="/diyas.webp" alt="" style={{ width: 88, display: "block", margin: "12px auto 0" }} />
         </div>
       </div>
       <div className="wbg">

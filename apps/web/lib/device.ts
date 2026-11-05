@@ -31,15 +31,63 @@ export const markOnboarded = () => set(K.done, "1");
 export const isStandalone = () =>
   window.matchMedia("(display-mode: standalone)").matches || (navigator as unknown as { standalone?: boolean }).standalone === true;
 
-export async function ensureDevice(): Promise<void> {
-  let id = get(K.id), secret = get(K.secret);
-  if (!id || !secret) {
-    id = crypto.randomUUID(); secret = rnd(32);
-    set(K.id, id); set(K.secret, secret);
-  }
+// fetch that gives up instead of hanging forever on a weak connection.
+export async function tfetch(url: string, init: RequestInit = {}, ms = 8000): Promise<Response> {
+  const c = new AbortController(); const t = setTimeout(() => c.abort(), ms);
+  try { return await fetch(url, { ...init, signal: c.signal }); } finally { clearTimeout(t); }
+}
+
+// Registers this phone once. After that it never calls the server just to open a page.
+let registering: Promise<void> | null = null;
+export function ensureDevice(): Promise<void> {
+  if (get(K.id) && get(K.secret) && get("lbl.registered") === "1") return Promise.resolve();
+  if (registering) return registering;
+  registering = (async () => {
+    let id = get(K.id), secret = get(K.secret);
+    if (!id || !secret) { id = crypto.randomUUID(); secret = rnd(32); set(K.id, id); set(K.secret, secret); }
+    try {
+      const r = await tfetch("/api/device", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ id, secret }) });
+      if (r.ok) set("lbl.registered", "1");
+    } catch { /* offline: tried again next time */ }
+    finally { registering = null; }
+  })();
+  return registering;
+}
+
+// Writes that fail on a bad connection wait in the phone and are sent when it comes back.
+type Job = { path: string; body: unknown; t: number };
+const OUT = "lbl.outbox";
+const readOut = (): Job[] => { try { return JSON.parse(get(OUT) || "[]"); } catch { return []; } };
+export function queueWrite(path: string, body: unknown) {
+  const q = readOut().filter((j) => !(j.path === path && JSON.stringify(j.body) === JSON.stringify(body)));
+  q.push({ path, body, t: Date.now() });
+  set(OUT, JSON.stringify(q.slice(-40)));
+}
+let flushing = false;
+export async function flushOutbox() {
+  if (flushing) return; flushing = true;
   try {
-    await fetch("/api/device", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ id, secret }) });
-  } catch { /* offline: retried next open */ }
+    await ensureDevice();
+    const keep: Job[] = [];
+    for (const j of readOut()) {
+      if (Date.now() - j.t > 24 * 3600_000) continue;
+      try {
+        const r = await tfetch(j.path, { method: "POST", headers: deviceHeaders(), body: JSON.stringify(j.body) });
+        if (r.status === 429 || r.status >= 500) keep.push(j);
+      } catch { keep.push(j); }
+    }
+    set(OUT, JSON.stringify(keep));
+  } finally { flushing = false; }
+}
+// Sends now; if the network fails, queues it and reports "queued" so the screen can still react.
+export async function writeOrQueue(path: string, body: unknown): Promise<"ok" | "queued" | "rejected"> {
+  try {
+    await ensureDevice();
+    const r = await tfetch(path, { method: "POST", headers: deviceHeaders(), body: JSON.stringify(body) });
+    if (r.ok) return "ok";
+    if (r.status === 429 || r.status >= 500 || r.status === 401) { queueWrite(path, body); return "queued"; }
+    return "rejected";
+  } catch { queueWrite(path, body); return "queued"; }
 }
 
 export function deviceHeaders(): Record<string, string> {
@@ -48,6 +96,7 @@ export function deviceHeaders(): Record<string, string> {
 export async function removeMyData() {
   try { await fetch("/api/device", { method: "DELETE", headers: deviceHeaders() }); } catch { /* offline */ }
   try { localStorage.clear(); } catch { /* ignore */ }
+  try { (await caches.keys()).forEach((k) => caches.delete(k)); } catch { /* ignore */ }
   try { (await navigator.serviceWorker?.getRegistrations())?.forEach((r) => r.unregister()); } catch { /* ignore */ }
 }
 export async function enablePush(): Promise<boolean> {
@@ -64,4 +113,4 @@ export async function enablePush(): Promise<boolean> {
     return r.ok;
   } catch { return false; }
 }
-export function track(name: string) { fetch("/api/event", { method: "POST", headers: deviceHeaders(), body: JSON.stringify({ name }) }).catch(() => {}); }
+export function track(name: string) { void writeOrQueue("/api/event", { name }); }

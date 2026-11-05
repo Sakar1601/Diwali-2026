@@ -1,13 +1,18 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { applySettings, deviceHeaders, ensureDevice } from "@/lib/device";
+import { applySettings, deviceHeaders, ensureDevice, tfetch } from "@/lib/device";
 import { BOOTHS } from "@/lib/booths";
 import { Icon } from "./ui";
 
 export default function BoothsView() {
   const [mine, setMine] = useState<string[]>([]); const [total, setTotal] = useState(0);
-  useEffect(() => { applySettings(); ensureDevice().then(() => fetch("/api/lamp", { headers: deviceHeaders() }).then((r) => r.json()).then((d) => { setMine(d.mine ?? []); setTotal(d.total ?? 0); }).catch(() => {})); }, []);
+  useEffect(() => {
+    applySettings();
+    let local: string[] = []; try { local = JSON.parse(localStorage.getItem("lbl.lit") || "[]"); } catch { /* ignore */ }
+    setMine(local);
+    ensureDevice().then(() => tfetch("/api/lamp", { headers: deviceHeaders() }).then((r) => r.json()).then((d) => { setMine([...new Set([...local, ...(d.mine ?? [])])]); setTotal(d.total ?? 0); })).catch(() => {});
+  }, []);
   return (
     <>
       <div><div className="eb">Six lamps</div><h1 className="ttl" style={{ marginTop: 6 }}>Virtual booths</h1><p className="lead">Do one small thing at each booth to light its lamp.</p></div>

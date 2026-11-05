@@ -6,6 +6,7 @@ import "@fontsource/montserrat/700.css";
 import "@fontsource/montserrat/800.css";
 import "@fontsource/noto-sans-devanagari/600.css";
 import "@diwali/kit/tokens.css";
+import Boot from "@/components/Boot";
 
 export const metadata: Metadata = {
   title: "Light Beyond Lamps · BAPS Phoenix Diwali 2026",
@@ -16,5 +17,5 @@ export const metadata: Metadata = {
 export const viewport: Viewport = { themeColor: "#4353A2", width: "device-width", initialScale: 1, viewportFit: "cover" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (<html lang="en"><body>{children}</body></html>);
+  return (<html lang="en"><body>{children}<Boot /></body></html>);
 }
