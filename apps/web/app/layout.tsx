@@ -1,4 +1,10 @@
 import type { Metadata, Viewport } from "next";
+import "@fontsource/montserrat/400.css";
+import "@fontsource/montserrat/500.css";
+import "@fontsource/montserrat/600.css";
+import "@fontsource/montserrat/700.css";
+import "@fontsource/montserrat/800.css";
+import "@fontsource/noto-sans-devanagari/600.css";
 import "@diwali/kit/tokens.css";
 
 export const metadata: Metadata = {
@@ -10,9 +16,5 @@ export const metadata: Metadata = {
 export const viewport: Viewport = { themeColor: "#4353A2", width: "device-width", initialScale: 1, viewportFit: "cover" };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="en">
-      <body>{children}</body>
-    </html>
-  );
+  return (<html lang="en"><body>{children}</body></html>);
 }

@@ -10,5 +10,8 @@ export default function LightLamp({ slug }: { slug: string }) {
     const r = await fetch("/api/lamp", { method: "POST", headers: deviceHeaders(), body: JSON.stringify({ booth: slug }) }).catch(() => null);
     if (r?.ok) setLit(true); else setErr("Could not light the lamp. Check your connection and try again.");
   }
-  return lit ? <p style={{ color: "var(--ok)", fontWeight: 600 }}>Your lamp is lit. Thank you.</p> : (<><button className="btn" onClick={light}>Light this lamp</button>{err && <p role="alert" style={{ color: "var(--er)" }}>{err}</p>}</>);
+  return (<>
+    {lit ? <a className="btn btn-s" href="/booths" style={{ color: "#17795C", borderColor: "#17795C" }}>Your lamp is lit · Back to booths</a> : <button className="btn btn-p" onClick={light}>Light my lamp</button>}
+    {err && <p role="alert" className="sm" style={{ color: "var(--er)" }}>{err}</p>}
+  </>);
 }

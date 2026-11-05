@@ -112,7 +112,7 @@ function Audit() {
 export default function AdminHome() {
   const [tab, setTab] = useState<Tab>("Dashboard");
   return (
-    <main className="screen" style={{ maxWidth: 960 }}>
+    <main className="screen pg" style={{ maxWidth: 960 }}>
       <span className="step">Admin</span><h1>Light Beyond Lamps</h1>
       <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }} role="tablist">
         {TABS.map((t) => <button key={t} role="tab" aria-selected={tab === t} onClick={() => setTab(t)} style={{ minHeight: 44, padding: "0 14px", borderRadius: 22, border: "1px solid var(--line)", background: tab === t ? "var(--nv)" : "#fff", color: tab === t ? "#fff" : "var(--tx)", font: "inherit" }}>{t}</button>)}

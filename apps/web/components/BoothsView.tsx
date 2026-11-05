@@ -3,25 +3,27 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { applySettings, deviceHeaders, ensureDevice } from "@/lib/device";
 import { BOOTHS } from "@/lib/booths";
+import { Icon } from "./ui";
 
 export default function BoothsView() {
   const [mine, setMine] = useState<string[]>([]); const [total, setTotal] = useState(0);
   useEffect(() => { applySettings(); ensureDevice().then(() => fetch("/api/lamp", { headers: deviceHeaders() }).then((r) => r.json()).then((d) => { setMine(d.mine ?? []); setTotal(d.total ?? 0); }).catch(() => {})); }, []);
   return (
     <>
-      <section className="card" style={{ borderColor: "var(--am)" }}>
-        <span className="step">Your Light Card</span>
-        <h2>{mine.length} of {BOOTHS.length} lamps lit</h2>
-        <div style={{ display: "flex", gap: 8, margin: "8px 0" }} aria-hidden>
-          {BOOTHS.map((b) => <span key={b.slug} style={{ width: 28, height: 28, borderRadius: 14, background: mine.includes(b.slug) ? "var(--am)" : "var(--s2)" }} />)}
-        </div>
-        <p>Wall of Lights: {total.toLocaleString()} lamps lit by visitors so far.</p>
-      </section>
-      {BOOTHS.map((b) => (
-        <Link key={b.slug} href={`/booths/${b.slug}`} className="card row" style={{ color: "inherit", textDecoration: "none" }}>
-          <span><b>{b.name}</b><p>{b.sub}{mine.includes(b.slug) ? " · lamp lit" : ""}</p></span>›
-        </Link>
-      ))}
+      <div><div className="eb">Six lamps</div><h1 className="ttl" style={{ marginTop: 6 }}>Virtual booths</h1><p className="lead">Do one small thing at each booth to light its lamp.</p></div>
+      <div style={{ display: "flex", gap: 10, justifyContent: "center" }} aria-label={`${mine.length} of ${BOOTHS.length} lamps lit`}>
+        {BOOTHS.map((b) => <span key={b.slug} className={`lamp ${mine.includes(b.slug) ? "on" : "off"}`}><Icon n="diya" /></span>)}
+      </div>
+      <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
+        {BOOTHS.map((b, i) => (
+          <Link key={b.slug} href={`/booths/${b.slug}`} className="card" style={{ width: "82%", marginLeft: i % 2 ? "auto" : 0, marginRight: i % 2 ? 0 : "auto", display: "flex", alignItems: "center", gap: 12, textDecoration: "none", color: "inherit" }}>
+            <span className="num" style={{ width: 44, height: 44, background: b.color, fontSize: 18 }}>{i + 1}</span>
+            <div className="grow"><b>{b.name}</b><small className="mu" style={{ display: "block", fontSize: 14 }}>{b.sub}</small></div>
+            {mine.includes(b.slug) ? <span className="lamp on" style={{ width: 34, height: 34 }}><Icon n="diya" /></span> : <span className="chev">›</span>}
+          </Link>
+        ))}
+      </div>
+      <p className="sm ctr">Wall of Lights: {total.toLocaleString()} lamps lit by visitors so far.</p>
     </>
   );
 }

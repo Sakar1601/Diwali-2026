@@ -38,13 +38,13 @@ export default function Moments() {
   }
   return (
     <>
-      <p>Take a selfie and add a Diwali frame. Your photo stays on your phone.</p>
+      <div><div className="eb">Photo frames</div><h1 className="ttl" style={{ marginTop: 6 }}>Frame camera</h1><p className="lead">Take a selfie and add a Diwali frame. Your photo stays on your phone.</p></div>
       <canvas ref={cv} width={W} height={H} style={{ width: "100%", height: "auto", borderRadius: 12, border: "1px solid var(--line)", background: "#fff" }} aria-label="Photo preview" />
-      <label className="btn" style={{ cursor: "pointer" }}>{has ? "Retake photo" : "Take or choose a photo"}<input type="file" accept="image/*" capture="user" onChange={onFile} style={{ display: "none" }} /></label>
+      <label className="btn btn-p" style={{ cursor: "pointer" }}>{has ? "Retake photo" : "Take or choose a photo"}<input type="file" accept="image/*" capture="user" onChange={onFile} style={{ display: "none" }} /></label>
       <div style={{ display: "flex", gap: 8, overflowX: "auto", paddingBottom: 4 }} role="group" aria-label="Frames">
-        {FRAMES.map((f, i) => <button key={f.n} onClick={() => { setFi(i); draw(i); }} aria-pressed={fi === i} style={{ flex: "0 0 auto", minHeight: 48, padding: "0 14px", borderRadius: 24, border: `3px solid ${f.c}`, background: fi === i ? f.c : "#fff", color: fi === i ? "#fff" : "#040707", font: "inherit" }}>{f.n}</button>)}
+        {FRAMES.map((f, i) => <button key={f.n} onClick={() => { setFi(i); draw(i); }} aria-pressed={fi === i} style={{ flex: "0 0 auto", minHeight: 44, padding: "0 18px", borderRadius: 999, border: `2px solid ${f.c}`, background: fi === i ? f.c : "#fff", color: fi === i ? "#fff" : "#040707", font: "inherit", fontWeight: 700, fontSize: 15 }}>{f.n}</button>)}
       </div>
-      {has && <button className="btn" onClick={save}>Save or share</button>}
+      {has && <button className="btn btn-s" onClick={save}>Save or share</button>}
     </>
   );
 }

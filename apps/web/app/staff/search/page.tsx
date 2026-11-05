@@ -17,10 +17,10 @@ export default function StaffSearch() {
     return () => clearTimeout(t);
   }, [q]);
   return (
-    <main className="screen">
+    <main className="screen pg">
       <h1>Find a person</h1>
       <input autoFocus value={q} onChange={(e) => setQ(e.target.value)} placeholder="Name, last 4 of phone, or email" aria-label="Search"
-        style={{ minHeight: 56, padding: "12px 14px", borderRadius: 12, border: "1px solid var(--line)", font: "inherit" }} />
+        style={{ minHeight: 56, padding: "12px 14px", borderRadius: 12, border: "1.5px solid rgba(67,83,162,.3)", font: "inherit" }} />
       {rows.map((r) => (
         <Link key={r.id} href={`/staff/person/${r.id}`} className="card" style={{ color: "inherit", textDecoration: "none" }}>
           <b>{r.name}</b>{r.pending && <span className="step" style={{ marginLeft: 8 }}>Walk-up</span>}

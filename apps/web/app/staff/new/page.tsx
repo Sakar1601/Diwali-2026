@@ -17,7 +17,7 @@ export default function NewPerson() {
   }
   const inp = { minHeight: 52, padding: "12px 14px", borderRadius: 12, border: "1px solid var(--line)", font: "inherit", width: "100%" } as const;
   return (
-    <main className="screen">
+    <main className="screen pg">
       <h1>Add a new person</h1>
       <input style={inp} placeholder="First name" value={f.first} onChange={set("first")} aria-label="First name" />
       <input style={inp} placeholder="Last name" value={f.last} onChange={set("last")} aria-label="Last name" />

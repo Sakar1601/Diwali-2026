@@ -1,3 +1,3 @@
-import TabBar from "@/components/TabBar";
+import { Dock, Hdr } from "@/components/ui";
 import Moments from "@/components/Moments";
-export default function Page() { return (<main className="screen"><h1>Moments</h1><Moments /><TabBar active="/moments" /></main>); }
+export default function Page() { return (<main className="screen"><div className="pg"><Hdr /><Moments /></div><Dock active="/moments" /></main>); }

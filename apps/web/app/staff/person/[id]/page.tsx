@@ -24,11 +24,11 @@ export default function PersonPage({ params }: { params: Promise<{ id: string }>
   async function extra(personId: string) {
     const reason = prompt("Why give another Calendar?"); if (reason?.trim()) give("calendar", personId, reason);
   }
-  if (!v) return <main className="screen"><p>Loading…</p></main>;
+  if (!v) return <main className="screen pg"><p>Loading…</p></main>;
   const got = v.calendar.find((c) => !c.extra);
   return (
-    <main className="screen">
-      <Link className="back" href="/staff/search">‹ Back to search</Link>
+    <main className="screen pg">
+      <Link className="back" href="/staff/search" aria-label="Back to search">‹</Link>
       <p>{v.address}</p>
       <section className="card">
         <h2>Calendar (one per household)</h2>

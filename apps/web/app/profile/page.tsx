@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { applySettings, enablePush, getSettings, removeMyData, saveSettings, type Settings } from "@/lib/device";
-import TabBar from "@/components/TabBar";
+import { Dock, PageBar, Toggle } from "@/components/ui";
 
 export default function Profile() {
   const [s, setS] = useState<Settings | null>(null); const [msg, setMsg] = useState("");
@@ -12,20 +12,26 @@ export default function Profile() {
     setS(saveSettings({ [k]: v })); setMsg("");
     if (k === "reminders" && v && !(await enablePush())) setMsg("Reminders need notifications to be allowed in your phone settings.");
   }
-  const T = ({ k, label }: { k: keyof Settings; label: string }) => (
-    <label className="row card" style={{ cursor: "pointer" }}><b>{label}</b>
-      <input type="checkbox" role="switch" checked={s[k]} onChange={(e) => set(k, e.target.checked)} style={{ width: 28, height: 28, accentColor: "#4353A2" }} /></label>
+  const T = ({ k, t, d }: { k: keyof Settings; t: string; d: string }) => (
+    <div className="li"><div className="grow"><b>{t}</b><small>{d}</small></div><Toggle on={s[k]} onChange={(v) => set(k, v)} label={t} /></div>
   );
   async function wipe() { if (confirm("Remove your settings and lamps from this phone and our records?")) { await removeMyData(); location.assign("/"); } }
   return (
     <main className="screen">
-      <h1>Profile</h1>
-      <T k="large" label="Larger text" /><T k="contrast" label="Higher contrast" /><T k="reminders" label="Show reminders" /><T k="wayfinding" label="Help me find my way" />
-      {msg && <p role="alert">{msg}</p>}
-      <Link className="btn ghost" href="/help">Help and volunteers</Link>
-      <button className="btn ghost" onClick={wipe}>Remove my data from this phone</button>
-      <p style={{ fontSize: ".9rem" }}>This phone holds only your settings.</p>
-      <TabBar active="/profile" />
+      <div className="pg">
+        <PageBar back="/today" tag="Profile" />
+        <div className="grp">
+          <T k="large" t="Larger text" d="Easier to read." /><T k="contrast" t="Higher contrast" d="Stronger colors." />
+          <T k="reminders" t="Show reminders" d="Alerts for shows and food." /><T k="wayfinding" t="Help me find my way" d="Your location stays on your phone." />
+        </div>
+        {msg && <p role="alert" className="sm">{msg}</p>}
+        <div className="grp">
+          <Link className="li" href="/help"><div className="grow"><b>Help and volunteers</b><small>A volunteer can do everything for you.</small></div><span className="chev">›</span></Link>
+          <button className="li" onClick={wipe} style={{ width: "100%", background: "none", border: 0, font: "inherit", textAlign: "left", cursor: "pointer" }}><div className="grow"><b>Remove my data from this phone</b><small>Clears your settings.</small></div><span className="chev">›</span></button>
+        </div>
+        <div className="sm mu ctr">This phone holds only your settings.</div>
+      </div>
+      <Dock active="/today" />
     </main>
   );
 }

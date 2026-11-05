@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { PageBar } from "@/components/ui";
 import { admin } from "@/lib/supabase-server";
 export const revalidate = 60;
 export default async function Help() {
@@ -6,11 +6,15 @@ export default async function Help() {
   const phone = typeof data?.value === "string" ? data.value : null;
   return (
     <main className="screen">
-      <Link className="back" href="/profile">‹ Profile</Link>
-      <h1>Help and volunteers</h1>
-      <section className="card"><h2>Need help?</h2><p style={{ color: "var(--tx)" }}>Look for a volunteer in a mandir-colored vest, or visit the Help Desk near the entrance.</p>
-        {phone && <a className="btn" href={`tel:${phone}`} style={{ marginTop: 12 }}>Call the Help Desk</a>}</section>
-      <section className="card"><h2>Lost something or someone?</h2><p style={{ color: "var(--tx)" }}>Go to the Help Desk. Volunteers will help you right away.</p></section>
+      <div className="pg">
+        <PageBar back="/profile" tag="Help" />
+        <div><h1 className="ttl">We are happy to help</h1><p className="lead">You do not need the app to enjoy today. A volunteer can do everything for you.</p></div>
+        <div className="grp">
+          <div className="li"><span className="dot d-fo" /><div className="grow"><b>Find a volunteer</b><small>Look for a volunteer vest. Say your name or phone number and they will help you.</small></div></div>
+          <div className="li"><span className="dot d-in" /><div className="grow"><b>Welcome Desk</b><small>In the Welcome Foyer, near the main doors.</small></div></div>
+          {phone && <a className="li" href={`tel:${phone}`}><span className="dot d-ki" /><div className="grow"><b>Call the help desk</b><small>{phone}</small></div><span className="chev">›</span></a>}
+        </div>
+      </div>
     </main>
   );
 }

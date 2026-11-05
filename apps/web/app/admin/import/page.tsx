@@ -19,7 +19,7 @@ export default function Import() {
     setS(r.body.preview ?? r.body);
   }
   return (
-    <main className="screen">
+    <main className="screen pg">
       <span className="step">Admin</span><h1>Import people</h1>
       <p>Choose the CSV. You will see a summary before anything is saved.</p>
       <input type="file" accept=".csv,text/csv" onChange={pick} aria-label="CSV file" />
