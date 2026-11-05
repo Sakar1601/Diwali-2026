@@ -180,3 +180,14 @@ select.inp{background:#fff}
   .cols2>.cx-b{background:#fff;border:1px solid var(--line);border-radius:20px;padding:22px 24px;box-shadow:0 6px 24px rgba(67,83,162,.07)}
   .cx-b .srow{padding:14px 0}
 }
+
+/* Desktop: header flush to the rail, full width; content stays readable inside */
+@media (min-width:1024px){
+  body:has(.dock){--gx:max(40px,calc((100vw - 264px - 1180px)/2))}
+  body:has(.dock) .screen,body:has(.dock) .screen.narrow{max-width:none;margin:0}
+  body:has(.dock) .pg{padding-left:var(--gx);padding-right:var(--gx)}
+  body:has(.dock) .top{margin-left:calc(var(--gx) * -1);margin-right:calc(var(--gx) * -1)}
+  body:has(.dock) .hdr{padding-left:var(--gx);padding-right:var(--gx)}
+  body:has(.dock) .strip{margin-left:var(--gx);margin-right:var(--gx)}
+  body:has(.dock) .screen.narrow .pg{max-width:none;padding-left:max(40px,calc((100vw - 264px - 720px)/2));padding-right:max(40px,calc((100vw - 264px - 720px)/2))}
+}
