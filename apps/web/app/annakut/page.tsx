@@ -10,16 +10,18 @@ const CARDS = [
 ];
 export default function Annakut() {
   return (
-    <main className="screen narrow">
+    <main className="screen wide">
       <div className="pg" style={{ gap: 12 }}>
         <PageBar back="/today" tag="About Annakut" />
         <div><h1 className="ttl">Annakut: a mountain of food</h1><p className="lead">A short guide. Takes about 2 minutes.</p></div>
+        <div className="cols2" style={{ gap: 12 }}>
         {CARDS.map(([t, d], i) => (
           <div className="card" key={t} style={{ display: "flex", gap: 14, alignItems: "flex-start" }}>
             <span className="ic" style={{ background: "#4353A2", width: 36, height: 36, fontWeight: 800, fontSize: 16 }}>{i + 1}</span>
             <div><b style={{ fontSize: 17 }}>{t}</b><div className="mu" style={{ fontSize: 15, lineHeight: 1.45, marginTop: 4 }}>{d}</div></div>
           </div>
         ))}
+        </div>
       </div>
     </main>
   );

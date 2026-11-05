@@ -58,6 +58,7 @@ const TABS: [string, string, keyof typeof P][] = [["/today", "Today", "sun"], ["
 export function Dock({ active }: { active: string }) {
   return (
     <nav className="dock" aria-label="Main">
+      <div className="dockbrand"><Logo size={44} /><div><b>BAPS Phoenix</b><small>Light Beyond Lamps</small></div></div>
       {TABS.map(([href, label, ic]) => (
         <Link key={href} href={href} className={`${href === active ? "on" : ""} ${ic === "cam" ? "cam" : ""}`} aria-current={href === active ? "page" : undefined}>
           {ic === "cam" ? <i><Icon n={ic} /></i> : <Icon n={ic} />}{label}

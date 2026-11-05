@@ -19,8 +19,10 @@ export default function RouteFinder({ locations, edges }: { locations: L[]; edge
   const sel = {} as const;
   return (
     <>
+      <div className="cols2">
       <label className="fld"><span style={{ fontSize: 14, fontWeight: 700 }}>Where are you?</span><select className="inp" style={sel} value={from} onChange={(e) => setFrom(e.target.value)}><option value="">Choose</option>{locations.map((l) => <option key={l.id} value={l.id}>{l.name}</option>)}</select></label>
       <label className="fld"><span style={{ fontSize: 14, fontWeight: 700 }}>Where to?</span><select className="inp" style={sel} value={to} onChange={(e) => setTo(e.target.value)}><option value="">Choose</option>{locations.map((l) => <option key={l.id} value={l.id}>{l.name}</option>)}</select></label>
+      </div>
       {path && path.length === 0 && <p>Walking directions for this trip are not ready yet. Please ask a volunteer.</p>}
       {path && path.length > 0 && (
         <section className="card"><h2 className="ser">About {path.reduce((a, e) => a + e.minutes, 0)} min</h2>

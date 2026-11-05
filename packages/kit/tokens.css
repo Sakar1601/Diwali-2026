@@ -135,3 +135,40 @@ select.inp{background:#fff}
 
 .cx-c{gap:24px}
 @media (min-width:768px){.cols2>.cx-b{grid-column:2;grid-row:1/span 2;position:sticky;top:16px}.cols2>.cx-c{grid-column:1}}
+
+/* Moments */
+.mom{display:flex;flex-direction:column;gap:16px}
+.momcv{position:relative}
+.momhint{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;color:#fff;text-align:center;padding:24px;pointer-events:none}
+.momhint span{opacity:.8;font-size:14px}
+.momctl{display:flex;flex-direction:column;gap:14px}
+.dockbrand{display:none}
+@media (min-width:768px){.mom{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px;align-items:start}}
+
+/* Desktop shell: nav becomes a left rail from 1024px; narrow pages become a centred card */
+@media (min-width:1024px){
+  body:has(.dock){padding-left:264px;background:var(--bg)}
+  .dock{top:0;bottom:0;left:0;right:auto;width:264px;max-width:none;height:100dvh;margin:0;flex-direction:column;align-items:stretch;gap:6px;padding:28px 16px;border-top:0;border-right:1px solid var(--line)}
+  .dockbrand{display:flex;align-items:center;gap:12px;padding:4px 10px 24px}
+  .dockbrand b{display:block;font-size:16px;color:#4353A2}
+  .dockbrand small{display:block;font-size:12px;color:var(--mu);letter-spacing:.04em}
+  .dock a{flex:none;flex-direction:row;height:52px;padding:0 16px;gap:14px;font-size:15px;border-radius:14px;align-items:center}
+  .dock a:hover{background:rgba(67,83,162,.07)}
+  .dock a.on{background:rgba(67,83,162,.12)}
+  .dock a.on svg{width:22px;height:22px;padding:0;background:none;border-radius:0}
+  .dock .cam i{width:34px;height:34px;margin:0;border-radius:12px}
+  body:has(.dock) .screen{max-width:1180px;box-shadow:none;background:transparent}
+  body:has(.dock) .pg{padding:0 40px 56px}
+  body:has(.dock) .top{margin:0 -40px}
+  body:has(.dock) .hdr{padding:60px 40px 22px}
+  body:has(.dock) .strip{margin:12px 40px 0}
+  body:has(.dock) .screen.narrow{max-width:760px}
+  .screen.narrow:not(:has(.dock)){margin:40px auto;min-height:0;border-radius:28px;box-shadow:0 24px 70px rgba(67,83,162,.18),0 0 0 1px var(--line)}
+  .screen.narrow:not(:has(.dock)) .pg{min-height:0;padding-bottom:40px}
+  .screen.narrow:not(:has(.dock)) .cta{position:static;padding:0 32px 32px;background:none;border:0}
+}
+@media (min-width:1500px){body:has(.dock) .screen{max-width:1320px}}
+
+.chips{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
+@media (min-width:768px){.chips{flex-wrap:wrap;overflow:visible}}
+@media (min-width:1024px){.screen.wide:not(:has(.dock)){max-width:1040px;margin:40px auto;min-height:0;border-radius:28px;box-shadow:0 24px 70px rgba(67,83,162,.18),0 0 0 1px var(--line)}.screen.wide:not(:has(.dock)) .pg{min-height:0;padding-bottom:40px}}
