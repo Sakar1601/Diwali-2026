@@ -1,0 +1,11 @@
+PersonId,FamilyId,FirstName,LastName,BAPSID,Phone,Email,Street,City,ZIP,RelationType,IsPrimary,Category,Center,Mandal,CellOptOut,SmsOptOut,EmailOptOut,MailOptOut
+P1001,F100,Rajesh,Patel,B-5001,480-555-0101,rajesh.patel@example.com,1204 W Test Ave,Phoenix,85001,Self,Y,Sample,Phoenix,Men,N,N,N,N
+P1002,F100,Meena,Patel,B-5002,480-555-0102,meena.patel@example.com,1204 W Test Ave,Phoenix,85001,Spouse,N,Sample,Phoenix,Women,N,N,N,N
+P1003,F100,Aarav,Patel,,,,1204 W Test Ave,Phoenix,85001,Child,N,Sample,Phoenix,Kishore,N,N,N,N
+P1004,F101,Hemant,Shah,B-5010,602-555-0110,hemant.shah@example.com,88 N Sample Rd,Tempe,85281,Self,Y,Sample,Phoenix,Men,N,Y,N,N
+P1005,F101,Kavita,Shah,B-5011,602-555-0111,,88 N Sample Rd,Tempe,85281,Spouse,N,Sample,Phoenix,Women,N,N,Y,N
+P1006,F102,Dinesh,Desai,B-5020,623-555-0120,dinesh.desai@example.com,2200 E Fake Blvd,Mesa,85201,Self,Y,Sample,Mesa,Men,N,N,N,Y
+P1007,F103,Anjali,Mehta,B-5030,480-555-0130,anjali.mehta@example.com,15 S Demo Ct,Chandler,85224,Self,Y,Sample,Phoenix,Women,Y,N,N,N
+P1008,F103,Nilesh,Mehta,B-5031,480-555-0131,,15 S Demo Ct,Chandler,85224,Spouse,N,Sample,Phoenix,Men,N,N,N,N
+P1009,F104,Smita,Joshi,,,smita.joshi@example.com,903 W Example Ln,Glendale,85301,Self,Y,Sample,Phoenix,Women,N,N,N,N
+P1010,F105,Bhavin,Trivedi,B-5050,,,410 E Placeholder Dr,Scottsdale,85251,Self,N,Sample,Phoenix,Men,N,N,N,N
