@@ -25,19 +25,20 @@ export function toDevanagari(word: string): string {
 function Bhasha() {
   const [name, setName] = useState(""); const dev = name.trim() ? name.trim().split(/\s+/).map(toDevanagari).join(" ") : "";
   const hear = () => { try { const u = new SpeechSynthesisUtterance(dev || name); u.lang = "hi-IN"; speechSynthesis.cancel(); speechSynthesis.speak(u); } catch {} };
-  const save = () => {
+  const save = async () => {
+    try { await Promise.all(["700 40px 'Figtree Variable'", "700 200px 'Noto Sans Devanagari Variable'"].map((f) => document.fonts.load(f, f.includes("200") ? dev : "Aa"))); } catch { /* draw with fallback */ }
     const c = document.createElement("canvas"); c.width = 1080; c.height = 1080; const x = c.getContext("2d")!;
     const g = x.createLinearGradient(0, 0, 1080, 1080); g.addColorStop(0, "#4353A2"); g.addColorStop(1, "#71318E"); x.fillStyle = g; x.fillRect(0, 0, 1080, 1080);
     x.fillStyle = "#FBB927"; x.fillRect(0, 0, 1080, 18); x.textAlign = "center"; x.fillStyle = "#fff";
-    x.font = "600 40px Montserrat, sans-serif"; x.fillText("BAPS PHOENIX · DIWALI 2026", 540, 150);
-    x.font = "700 200px 'Noto Sans Devanagari', sans-serif"; x.fillText(dev, 540, 560, 960);
-    x.font = "500 56px Montserrat, sans-serif"; x.fillStyle = "#FBB927"; x.fillText(name.trim(), 540, 700, 960);
-    x.fillStyle = "#fff"; x.font = "500 36px Montserrat, sans-serif"; x.fillText("Light Beyond Lamps", 540, 980);
+    x.font = "600 40px 'Figtree Variable', sans-serif"; x.fillText("BAPS PHOENIX · DIWALI 2026", 540, 150);
+    x.font = "700 200px 'Noto Sans Devanagari Variable', sans-serif"; x.fillText(dev, 540, 560, 960);
+    x.font = "500 56px 'Figtree Variable', sans-serif"; x.fillStyle = "#FBB927"; x.fillText(name.trim(), 540, 700, 960);
+    x.fillStyle = "#fff"; x.font = "500 36px 'Figtree Variable', sans-serif"; x.fillText("Light Beyond Lamps", 540, 980);
     c.toBlob((b) => { if (!b) return; const a = document.createElement("a"); a.href = URL.createObjectURL(b); a.download = "my-name.png"; a.click(); track("made_moment"); });
   };
   return (<div className="card" style={{ padding: 20, display: "grid", gap: 14 }}>
     <input value={name} onChange={(e) => setName(e.target.value.slice(0, 30))} placeholder="Type your name" aria-label="Your name" style={{ font: "inherit", fontSize: 18, padding: 14, borderRadius: 14, border: "1.5px solid var(--line,#ddd)" }} />
-    <div className="ctr" style={{ fontSize: 56, fontFamily: "'Noto Sans Devanagari', sans-serif", fontWeight: 700, color: "#4353A2", minHeight: 80, lineHeight: 1.3 }} lang="hi">{dev || "नाम"}</div>
+    <div className="ctr" style={{ fontSize: 56, fontFamily: "'Noto Sans Devanagari Variable', sans-serif", fontWeight: 700, color: "#4353A2", minHeight: 80, lineHeight: 1.3 }} lang="hi">{dev || "नाम"}</div>
     <p style={{ fontSize: 12, opacity: .7 }}>A simple sound-based spelling. Ask a volunteer for the traditional spelling of your name.</p>
     <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}><button style={sec} onClick={hear} disabled={!dev}>Hear it</button><button style={pri} onClick={save} disabled={!dev}>Save card</button></div>
   </div>);
@@ -53,7 +54,7 @@ function Bhusha() {
     if (img) { const s = Math.max(800 / img.width, 800 / img.height); x.drawImage(img, (800 - img.width * s) / 2, (800 - img.height * s) / 2, img.width * s, img.height * s); }
     const col = OCC[occ][1]; x.lineWidth = 36; x.strokeStyle = col; x.strokeRect(18, 18, 764, 764);
     x.fillStyle = col; for (let i = 0; i < 12; i++) { x.beginPath(); x.arc(40 + i * 65, 40, 22, 0, Math.PI); x.fill(); }
-    x.fillStyle = "rgba(0,0,0,.55)"; x.fillRect(0, 700, 800, 100); x.fillStyle = "#fff"; x.font = "700 40px Montserrat, sans-serif"; x.textAlign = "center"; x.fillText(`${OCC[occ][0]} look · Diwali 2026`, 400, 762);
+    x.fillStyle = "rgba(0,0,0,.55)"; x.fillRect(0, 700, 800, 100); x.fillStyle = "#fff"; x.font = "700 40px 'Figtree Variable', sans-serif"; x.textAlign = "center"; x.fillText(`${OCC[occ][0]} look · Diwali 2026`, 400, 762);
   }, [img, occ]);
   const save = () => cv.current?.toBlob((b) => { if (!b) return; const a = document.createElement("a"); a.href = URL.createObjectURL(b); a.download = "my-look.png"; a.click(); track("made_moment"); });
   return (<div className="card" style={{ padding: 20, display: "grid", gap: 14 }}>

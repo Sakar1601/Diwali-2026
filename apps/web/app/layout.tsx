@@ -1,10 +1,7 @@
 import type { Metadata, Viewport } from "next";
-import "@fontsource/montserrat/400.css";
-import "@fontsource/montserrat/500.css";
-import "@fontsource/montserrat/600.css";
-import "@fontsource/montserrat/700.css";
-import "@fontsource/montserrat/800.css";
-import "@fontsource/noto-sans-devanagari/600.css";
+import "@fontsource-variable/figtree";
+import "@fontsource-variable/bricolage-grotesque";
+import "@fontsource-variable/noto-sans-devanagari";
 import "@diwali/kit/tokens.css";
 import Boot from "@/components/Boot";
 

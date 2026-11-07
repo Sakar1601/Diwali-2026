@@ -1,5 +1,5 @@
 /* Light Beyond Lamps service worker: the app opens from the phone's own copy, even with no signal. */
-const V = "v3";
+const V = "v4";
 const STATIC = `lbl-static-${V}`, PAGES = `lbl-pages-${V}`;
 const SLUGS = ["bhasha", "bhusha", "bhojan", "arts", "festivals", "spirituality"];
 const ROUTES = ["/", "/today", "/map", "/moments", "/booths", "/updates", "/annakut", "/profile", "/help", "/install", "/setup", ...SLUGS.map((s) => "/booths/" + s)];

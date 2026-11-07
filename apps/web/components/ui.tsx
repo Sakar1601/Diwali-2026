@@ -26,7 +26,7 @@ export function Hdr({ strip }: { strip?: string | null }) {
             <Logo />
             <div style={{ minWidth: 0 }}>
               <div style={{ fontSize: 15, fontWeight: 700, lineHeight: 1.2 }}>BAPS Swaminarayan Mandir</div>
-              <div style={{ fontSize: 12, letterSpacing: ".16em", textTransform: "uppercase", color: "#DAD6F0" }}>Phoenix, Arizona</div>
+              <div style={{ fontSize: 13, letterSpacing: ".02em", color: "#DAD6F0" }}>Phoenix, Arizona</div>
             </div>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: 6, position: "relative", zIndex: 1 }}>

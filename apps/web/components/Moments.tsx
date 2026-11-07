@@ -21,7 +21,7 @@ export default function Moments() {
     g.strokeStyle = col; g.lineWidth = 56; g.strokeRect(28, 28, W - 56, H - 56);
     g.fillStyle = col; for (const [x, y] of [[60, 60], [W - 60, 60], [60, H - 60], [W - 60, H - 60]]) { g.beginPath(); g.arc(x, y, 46, 0, 7); g.fill(); }
     for (let x = 160; x < W - 120; x += 90) { g.beginPath(); g.arc(x, 60, 14, 0, 7); g.fill(); }
-    g.fillRect(0, H - 150, W, 150); g.fillStyle = "#fff"; g.font = "600 44px system-ui"; g.textAlign = "center";
+    g.fillRect(0, H - 150, W, 150); g.fillStyle = "#fff"; g.font = "600 44px 'Figtree Variable', system-ui"; g.textAlign = "center";
     g.fillText("Light Beyond Lamps · Diwali 2026", W / 2, H - 70);
   }
   function onFile(e: React.ChangeEvent<HTMLInputElement>) {
